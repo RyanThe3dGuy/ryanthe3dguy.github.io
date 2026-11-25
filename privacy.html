@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy policy · Moonlight smart display</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Privacy policy</h1>
+      <p class="lead">Moonlight smart display</p>
+
+      <h2>Who uses this app</h2>
+      <p>
+        Moonlight is a personal smart display. Its Google sign-in is used only by the owner of this website,
+        for the owner's own Google account and devices. It is not offered to the public.
+      </p>
+
+      <h2>What Google data it accesses</h2>
+      <ul>
+        <li>
+          The list of Nest devices the owner chooses to share, and their state (for example, a thermostat's
+          temperature).
+        </li>
+        <li>Doorbell, person and motion events from those devices, including short event clips.</li>
+        <li>Live video from a camera, only while an alert is on screen.</li>
+        <li>
+          Messages in the owner's own Google Cloud Pub/Sub subscription, which is how those events are
+          delivered.
+        </li>
+      </ul>
+
+      <h2>How the data is used</h2>
+      <p>
+        The data is used only to show alerts, video and readings on the owner's display at home. It is
+        processed on the owner's own Raspberry Pi. Event clips are kept in memory for a few minutes and are
+        not saved. No data is sold, shared with anyone else, used for advertising, or used to train AI models.
+      </p>
+      <p>
+        Moonlight's use and transfer of information received from Google APIs adheres to the
+        <a href="https://developers.google.com/terms/api-services-user-data-policy"
+          >Google API Services User Data Policy</a
+        >, including the Limited Use requirements.
+      </p>
+
+      <h2>Storage and security</h2>
+      <p>
+        The sign-in token and the app's settings are stored only on the owner's Raspberry Pi, in a file that
+        only the Moonlight service can read. Nothing is stored on this website or on any other server.
+      </p>
+
+      <h2>Removing access</h2>
+      <p>
+        Access can be withdrawn at any time at
+        <a href="https://nestservices.google.com/partnerconnections"
+          >nestservices.google.com/partnerconnections</a
+        >
+        or in the Google Account's
+        <a href="https://myaccount.google.com/permissions">third-party access</a> settings. Choosing
+        <em>Disconnect</em> in Moonlight also deletes the stored token from the Raspberry Pi.
+      </p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy can be sent to the owner of this website through its GitHub profile.</p>
+
+      <footer><a href="index.html">Home</a></footer>
+    </main>
+  </body>
+</html>

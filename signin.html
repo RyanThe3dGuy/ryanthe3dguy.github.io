@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Moonlight sign-in</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Moonlight sign-in</h1>
+      <div class="card" id="result"><p>Reading the sign-in result…</p></div>
+      <p>
+        This page only displays what Google sent back. Nothing on it is stored or sent anywhere. The code
+        works once, within a few minutes, and only together with the secret saved on your Moonlight display.
+      </p>
+      <footer><a href="index.html">Home</a> · <a href="privacy.html">Privacy policy</a></footer>
+    </main>
+    <script>
+      (function () {
+        var box = document.getElementById('result');
+        var params = new URLSearchParams(location.search);
+        var code = params.get('code');
+        var error = params.get('error');
+        if (error) {
+          box.innerHTML =
+            '<p class="bad">Google did not complete the sign-in.</p><p>Google said: <code></code></p><p>Go back to Moonlight and press <strong>Open Google sign-in</strong> again. Make sure you allow access on every screen.</p>';
+          box.querySelector('code').textContent = error;
+          return;
+        }
+        if (!code) {
+          box.innerHTML =
+            '<p>There is no sign-in code here. Start the sign-in from the Moonlight editor: <strong>Apps → Google Nest → Set up</strong>.</p>';
+          return;
+        }
+        var full = location.href;
+        box.innerHTML =
+          '<p class="ok">Signed in with Google.</p><p>Press <strong>Copy</strong>, then paste into <em>Address you were sent to</em> in the Moonlight editor and press <strong>Connect</strong>. Do it now: the code expires within minutes.</p><p><textarea readonly></textarea></p><p><button type="button">Copy</button> <span id="copied"></span></p>';
+        var area = box.querySelector('textarea');
+        area.value = full;
+        box.querySelector('button').addEventListener('click', function () {
+          var done = function () {
+            document.getElementById('copied').textContent = 'Copied.';
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(full).then(done, function () {
+              area.select();
+              document.execCommand('copy');
+              done();
+            });
+          } else {
+            area.select();
+            document.execCommand('copy');
+            done();
+          }
+        });
+        // Remove the code from the address bar and browser history once it is shown.
+        history.replaceState(null, '', location.pathname);
+      })();
+    </script>
+  </body>
+</html>
